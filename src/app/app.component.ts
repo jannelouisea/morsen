@@ -42,6 +42,12 @@ export class AppComponent {
     }
   }
 
+  removeTranslation (translationId: number) {
+    console.log('Removed was called: ' + translationId);
+    this.translationsManager.removeTranslation(translationId);
+    this.translations = this.translationsManager.getTranslations();
+  }
+
   clearTranslations() {
     this.translationsManager.deleteAllTranslations();
     this.translations = this.translationsManager.getTranslations();
