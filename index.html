@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Morsen</title><base href="https://jannelouisea.github.io/morsen/"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/x-icon" href="favicon.ico"><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><!-- JQuery --><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- Latest compiled and minified JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome Icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link href="styles.b11fd266e09b9cf61815.bundle.css" rel="stylesheet"/></head><body><app-root></app-root><script>$('.strip').each(function(){
+      var $t = $(this),
+          rows = $.trim($t.html()).split('<br>');
+
+      $t.html('');
+
+      $.each(rows, function(i, val){
+        $('<span class="row"></span>').appendTo($t);
+
+        var letters = $.trim(val).split('');
+
+        $.each(letters, function(j, v){
+          v = (v == ' ') ? '&nbsp;' : v;
+          $('<span>' + $.trim(v) + '</span>').appendTo($('.row:last', $t));
+        });
+
+      });
+    });
+
+    $('body').click(function(){
+      for (i = 0; i < $('.strip span').length; i++) {
+        (function(ind) {
+          setTimeout(function(){
+              $('.strip span:not(".row")').eq(ind).toggleClass('animate');
+          }, ind * 15);
+        })(i);
+      }
+    }).click();</script><script type="text/javascript" src="inline.fe2b75473f58e3b4f4c2.bundle.js"></script><script type="text/javascript" src="polyfills.71b130084c52939ca448.bundle.js"></script><script type="text/javascript" src="vendor.be3c5aa87bffe96ad376.bundle.js"></script><script type="text/javascript" src="main.02ff12033bb828c3204d.bundle.js"></script></body></html>
