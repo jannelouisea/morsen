@@ -39,7 +39,7 @@
 <!-- Turn this section into a component -->
 <div *ngFor="let translation of translations" class="container-fluid" style="width:90vw;">
   <div class="row">
-    <div class="col-sm-5" style="background-color: rgba(255,255,255,0.2); font-family: 'Roboto', sans-serif; font-size:1.5vw;">{{translation.id}} {{translation.morseCode}}</div>
+    <div class="col-sm-5" style="background-color: rgba(255,255,255,0.2); font-family: 'Roboto', sans-serif; font-size:1.5vw;">{{translation.morseCode}}</div>
     <div class="col-sm-6" style="background-color: rgba(255,255,255,0.2); font-family: 'Roboto', sans-serif; font-size:1.5vw">: {{translation.translation}}</div>
     <button (click)="removeTranslation(translation.id)" class="col-sm-1" style=" font-family: 'Roboto', sans-serif; font-size:1.5vw; background-color: rgba(255,255,255,0); border: 0px solid;"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
   </div>
