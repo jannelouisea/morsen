@@ -12,7 +12,6 @@ import { MorseCodeTranslatorService } from './morse-code-translator.service';
 export class AppComponent {
   title = 'M O R S E N';
   maxInputChars = 50;
-  private maxSavedTranslations = 10;
 
   morseCode: string;
   currTranslation: string;

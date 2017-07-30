@@ -4,10 +4,12 @@ import { Translation } from './translation';
 @Injectable()
 export class ManageTranslationsService {
 
+  maxTranslations: number;
   translations: Translation[];
   count: number;
 
   constructor () {
+    this.maxTranslations = 10;
     this.translations = [];
     this.count = 0;
   }
@@ -17,8 +19,10 @@ export class ManageTranslationsService {
   }
 
   addTranslation(morseCode: string, translation: string) {
-    this.translations.push({id: this.count, morseCode: morseCode, translation: translation});
-    this.count++;
+    if (this.count !== this.maxTranslations) {
+      this.translations.push({id: this.count, morseCode: morseCode, translation: translation});
+      this.count++;
+    }
   }
 
   removeTranslation() {
