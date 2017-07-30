@@ -1,23 +1,51 @@
 import { Component } from '@angular/core';
+import { ManageTranslationsService } from './manage-translations.service';
+import { Translation } from './translation';
+import { MorseCodeTranslatorService } from './morse-code-translator.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ManageTranslationsService, MorseCodeTranslatorService]
 })
 export class AppComponent {
-  private title = 'MORSEN';
-  private maxInputChars = 75;
-  private maxSavedTranslations = 20;
+  private title = 'M O R S E N';
+  private maxInputChars = 50;
+  private maxSavedTranslations = 10;
 
-  savedTranslations: Translation[] = [{morseCode: '...---...', translation: 'SOS'}]
+  morseCode: string;
+  currTranslation: string;
+  error: string;
+  translations: Translation[];
+  translationsManager: ManageTranslationsService;
+  translator: MorseCodeTranslatorService;
 
-  morseCode = '';
-  translation = '';
+  constructor (translationsManager: ManageTranslationsService, translator: MorseCodeTranslatorService) {
+    this.morseCode = '';
+    this.currTranslation = ' ';
+    this.error = '';
+    this.translations = translationsManager.getTranslations();
+    this.translationsManager = translationsManager;
+    this.translator = translator;
+  }
 
-  translateMorse(morse: string) {
-    this.morseCode = morse;
-    this.translation = morse;
+  translateMorse(morseCode: string) {
+    this.morseCode = morseCode;
+    this.currTranslation = this.translator.translateMorse(morseCode);
+  }
+
+  saveTranslation() {
+    if (this.morseCode !== '' && this.currTranslation !== '') {
+      this.translationsManager.addTranslation(this.morseCode, this.currTranslation);
+      this.morseCode = '';
+      this.currTranslation = '';
+    }
+  }
+
+  clearTranslations() {
+    this.translationsManager.deleteAllTranslations();
+    this.translations = this.translationsManager.getTranslations();
   }
 
   _keyPress(event: any) {
@@ -29,9 +57,4 @@ export class AppComponent {
       event.preventDefault();
     }
   }
-}
-
-export class Translation {
-  morseCode: string;
-  translation: string;
 }

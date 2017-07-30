@@ -1,22 +1,51 @@
 <div style="text-align:center">
-  <h1>
+  <h1 class="strip"
+      style="color: white;
+             font-size:80px;
+             font-family: 'Roboto', sans-serif;">
     {{title}}
   </h1>
 </div>
-<div>
-  <h1>
-    {{translation}}
-  </h1>
+<div style="text-align:center">
+  <h2 style="font-family: 'Roboto', sans-serif;
+             font-size:50px">
+    {{currTranslation}}
+  </h2>
+  <div>
   <input #morseInput
          [(ngModel)]="morseCode" 
          [maxlength]="maxInputChars" 
-         placeholder="type morse code here"
          (keypress)="_keyPress($event)"
          (keyup)="translateMorse(morseInput.value)"
+         style="background-color: rgba(255,255,255,0.2);
+                border: 0px solid;
+                color:#ffffff;
+                padding: 0 20px;
+                width: 90%;
+                font-size:50px;
+                font-family: 'Roboto', sans-serif;
+                font-weight:bold;
+                text-align:center;"
   >
-  <ul>
-    <li *ngFor="let savedTranslation of savedTranslations">
-      {{savedTranslation.morseCode}} | {{savedTranslation.translation}}
-    </li>
-  </ul>
+  </div>
+  <br>
+  <div style="text-align:center">
+    <button (click)="saveTranslation()" style="font-size:30px; background-color: rgba(255,255,255,0.2); border: 0px solid;">S A V E</button>
+    <button (click)="clearTranslations()" style="font-size:30px; background-color: rgba(255,255,255,0.2); border: 0px solid;">C L E A R</button>
+  </div>
 </div>
+<br>
+<!-- Turn this section into a component -->
+<div *ngFor="let translation of translations" class="container-fluid" style="width: 90%;">
+  <div class="row">
+    <p class="col-sm-6" style="background-color: rgba(255,255,255,0.2); font-family: 'Roboto', sans-serif; font-size:40px;">{{translation.morseCode}}</p>
+    <p class="col-sm-6" style="background-color: rgba(255,255,255,0.2); font-family: 'Roboto', sans-serif; font-size:40px;">: {{translation.translation}}</p>
+  </div>
+  <br>
+</div>
+
+<!-- Turn this into another component -->
+<!-- 
+<i class="fa fa-info-circle" aria-hidden="true"></i>
+-->
+
