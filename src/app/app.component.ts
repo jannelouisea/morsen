@@ -10,8 +10,8 @@ import { MorseCodeTranslatorService } from './morse-code-translator.service';
   providers: [ManageTranslationsService, MorseCodeTranslatorService]
 })
 export class AppComponent {
-  private title = 'M O R S E N';
-  private maxInputChars = 50;
+  title = 'M O R S E N';
+  maxInputChars = 50;
   private maxSavedTranslations = 10;
 
   morseCode: string;
