@@ -20,6 +20,15 @@ export class AppComponent {
   translationsManager: ManageTranslationsService;
   translator: MorseCodeTranslatorService;
 
+  morseToText: boolean;
+  modeLabel: string;
+  morseToTextLabel: string;
+  textToMorseLabel: string;
+
+  inputClass: string;
+  inputMorseClass: string;
+  inputTextClass: string;
+
   constructor (translationsManager: ManageTranslationsService, translator: MorseCodeTranslatorService) {
     this.morseCode = '';
     this.currTranslation = ' ';
@@ -27,6 +36,16 @@ export class AppComponent {
     this.translations = translationsManager.getTranslations();
     this.translationsManager = translationsManager;
     this.translator = translator;
+    this.morseToText = true;
+
+    this.morseToTextLabel = 'M O R S E -> T E X T';
+    this.textToMorseLabel = 'T E X T -> M O R S E';
+
+    this.inputMorseClass = 'input-morse';
+    this.inputTextClass = 'input-text';
+    this.inputClass = this.morseToText ? this.inputMorseClass : this.inputTextClass;
+
+    this.modeLabel = this.morseToText ? this.morseToTextLabel : this.textToMorseLabel;
   }
 
   translateMorse(morseCode: string) {
@@ -54,7 +73,7 @@ export class AppComponent {
   }
 
   _keyPress(event: any) {
-    const pattern = /[\.\- ]/;
+    const pattern = this.morseToText ? /[\.\- ]/ : /[A-Za-z\d\.\,?\-\/@()! ]/;
     const inputChar = String.fromCharCode(event.charCode);
 
     if (!pattern.test(inputChar)) {
@@ -62,4 +81,11 @@ export class AppComponent {
       event.preventDefault();
     }
   }
+
+  changeTranslationMode() {
+    this.morseToText = !this.morseToText;
+    this.modeLabel = this.morseToText ? this.morseToTextLabel : this.textToMorseLabel;
+    this.inputClass = this.morseToText ? this.inputMorseClass : this.inputTextClass;
+  }
+
 }

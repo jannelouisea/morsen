@@ -1,56 +1,38 @@
-<div style="text-align:center;">
-  <h1 class="strip"
-      style="color: white;
-             text-align:center; font-size:7vw;
-             font-family: 'Roboto', sans-serif;">
+<div>
+  <button class="title">
     {{title}}
-  </h1>
-  <!-- Make this into a component with a timeout function -->
-  <p style="color: rgba(255,255,255,.5);
-             text-align:center; font-size:1vw;
-             font-family: 'Roboto', sans-serif;
-             border-bottom: 1px solid rgba(255,255,255,.25);">
-    Click title for more information.
-  </p>
+  </button>
+  <p>Click title to show more information</p>
 </div>
-<div style="text-align:center">
+
+<div>
   <h2 style="font-family: 'Roboto', sans-serif;
              font-size:4vw">
     {{currTranslation}}
   </h2>
   <div>
-  <input #morseInput
+  <input class="input-text"
+         #morseInput
          [(ngModel)]="morseCode" 
          [maxlength]="maxInputChars" 
          (keypress)="_keyPress($event)"
          (keyup)="translateMorse(morseInput.value)"
-         style="background-color: rgba(255,255,255,0.2);
-                border: 0px solid;
-                color:#ffffff;
-                padding: 0 20px;
-                width: 90vw;
-                font-size:4vw;
-                font-family: 'Roboto', sans-serif;
-                font-weight:bold;
-                text-align:center;"
   >
   </div>
   <br>
-  <div style="text-align:center">
-    <button (click)="saveTranslation()" style="font-size:2.5vw; background-color: rgba(255,255,255,0.2); border: 0px solid;">S A V E</button>
-    <button (click)="clearTranslations()" style="font-size:2.5vw; background-color: rgba(255,255,255,0.2); border: 0px solid;">C L E A R</button>
+  <div>
+    <button (click)="saveTranslation()" class="translator-button">S A V E</button>
+    <button (click)="changeTranslationMode()" class="translator-button">{{modeLabel}}</button>
+    <button (click)="clearTranslations()" class="translator-button">C L E A R</button>
   </div>
 </div>
 <br>
 
 <app-saved-translation *ngFor="let translation of translations" [translation]="translation" (change)="removeTranslation($event)"></app-saved-translation>
 
-<!-- Turn this into another component -->
-<div style="text-align:center;
-            position: fixed;
-            bottom: 0vw;
-            width: 100vw;">
-  <div style="text-align:center;">
+<!-- Github Link -->
+<div class="github-link">
+  <div>
     <a href="https://github.com/jannelouisea/morsen">
       <i class="fa fa-github fa-3x" aria-hidden="true"></i>
     </a>
