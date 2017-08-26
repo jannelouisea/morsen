@@ -1,4 +1,4 @@
-body{height:100vh;background:linear-gradient(15deg,#00a9f1,#cf00f1);color:#fff;position:relative}:focus{outline:none}
+body{background:linear-gradient(15deg,#00a9f1,#cf00f1);color:#fff;height:100vh;position:relative}
 /*
 h1 {
   font-family: Roboto, sans-serif;
