@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Translation } from '../translation';
 
 @Component({
+  // Add a prefix to this component?
   selector: 'app-saved-translation',
   templateUrl: './saved-translation.component.html',
   styleUrls: ['./saved-translation.component.css']
@@ -13,11 +14,9 @@ export class SavedTranslationComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   removeTranslation() {
-    console.log('Remove function is called in child component.');
     this.change.emit(this.translation.id);
   }
 

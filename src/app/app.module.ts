@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms'; // NgModel lives here
 import { AppComponent } from './app.component';
 import { TreeNode, MorseTreeService } from './morse-tree.service';
 import { SavedTranslationComponent } from './saved-translation/saved-translation.component';
+import { TranslatorComponent } from './translator/translator.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SavedTranslationComponent
+    SavedTranslationComponent,
+    TranslatorComponent
   ],
   imports: [
     BrowserModule,

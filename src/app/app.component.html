@@ -1,8 +1,19 @@
-<div>
-  <button class="title">
+<div style="margin: 0 auto; width:90vw">
+  <p class="title">
     {{title}}
-  </button>
-  <p>Click title to show more information</p>
+  </p>
+</div>
+
+<div style="margin: 0 auto; width:90vw; border-bottom: solid; border-bottom-color:white">
+  <div style="margin: 0 auto; width:90vw; background-color: rgba(255,255,255,0.2);">
+    <p style="font-size: 1.5vw;">
+      M O R S E N is an Angular web application that translates text to morse code and morse code to text in real time.
+    </p>
+    <p style="font-size: 1.5vw;">
+      Simply enter your input into the text box below then watch as M O R S E N instantly starts translating.
+    </p>
+  </div>
+  <p></p>
 </div>
 
 <div>
@@ -11,7 +22,7 @@
     {{currTranslation}}
   </h2>
   <div>
-  <input class="input-text"
+  <input [class]="inputClass"
          #morseInput
          [(ngModel)]="morseCode" 
          [maxlength]="maxInputChars" 
@@ -22,8 +33,9 @@
   <br>
   <div>
     <button (click)="saveTranslation()" class="translator-button">S A V E</button>
+    <button (click)="clearInput()" class="translator-button">C L E A R</button>
     <button (click)="changeTranslationMode()" class="translator-button">{{modeLabel}}</button>
-    <button (click)="clearTranslations()" class="translator-button">C L E A R</button>
+    <button (click)="clearTranslations()" class="translator-button">R E S E T</button>
   </div>
 </div>
 <br>
@@ -31,10 +43,10 @@
 <app-saved-translation *ngFor="let translation of translations" [translation]="translation" (change)="removeTranslation($event)"></app-saved-translation>
 
 <!-- Github Link -->
+<!--
 <div class="github-link">
-  <div>
     <a href="https://github.com/jannelouisea/morsen">
       <i class="fa fa-github fa-3x" aria-hidden="true"></i>
     </a>
-  </div>
 </div>
+-->

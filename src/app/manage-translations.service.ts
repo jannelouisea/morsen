@@ -10,7 +10,7 @@ export class ManageTranslationsService {
   count: number;
 
   constructor () {
-    this.maxTranslations = 10;
+    this.maxTranslations = 9;
     this.translations = [];
     this.ids = 0;
     this.count = 0;
@@ -42,7 +42,7 @@ export class ManageTranslationsService {
 
   deleteAllTranslations() {
     this.translations = [];
-    this.ids = 0;
+    this.count = 0;
     this.ids = 0;
   }
 }

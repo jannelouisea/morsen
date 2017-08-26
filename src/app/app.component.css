@@ -1,20 +1,32 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+div {
+    text-align: center;
+}
+
 .title {
     color: white;
-    text-align: center;
     font-size: 7vw;
-    font-family: 'Roboto', sans-serif;
-    background-color: rgba(255,255,255,0);
-    border: 0px solid;
+    border-bottom: solid;
+    border-bottom-color: #ffffff;
+}
+
+.title-info {
+    color: rgba(255,255,255,0.5);
+    font-size: 1vw;
+}
+
+.info {
+    background-color: rgba(255,255,255,0.2);
 }
 
 .translator-button {
     font-size: 2.5vw;
     background-color: rgba(255,255,255,0.2);
     border: 0px solid;
-}
-
-div {
-    text-align: center;
+    margin: 0vw .5vw;
 }
 
 .github-link {
@@ -30,7 +42,6 @@ div {
     padding: 0 20px;
     width: 90vw;
     font-size: 4vw;
-    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     text-align: center;
 }
@@ -41,7 +52,6 @@ div {
     color:#ffffff;
     padding: 0 20px;
     width: 90vw;
-    font-size: 3vw;
-    font-family: 'Roboto', sans-serif;
+    font-size: 4vw;
     text-align: center;
 }

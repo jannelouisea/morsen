@@ -2,16 +2,19 @@ import { Component } from '@angular/core';
 import { ManageTranslationsService } from './manage-translations.service';
 import { Translation } from './translation';
 import { MorseCodeTranslatorService } from './morse-code-translator.service';
+import { TextToMorseTranslatorService } from './text-to-morse-translator.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ManageTranslationsService, MorseCodeTranslatorService]
+  providers: [ManageTranslationsService,
+              MorseCodeTranslatorService,
+              TextToMorseTranslatorService]
 })
 export class AppComponent {
   title = 'M O R S E N';
-  maxInputChars = 50;
+  maxInputChars: number;
 
   morseCode: string;
   currTranslation: string;
@@ -19,6 +22,7 @@ export class AppComponent {
   translations: Translation[];
   translationsManager: ManageTranslationsService;
   translator: MorseCodeTranslatorService;
+  textTranslator: TextToMorseTranslatorService;
 
   morseToText: boolean;
   modeLabel: string;
@@ -29,17 +33,22 @@ export class AppComponent {
   inputMorseClass: string;
   inputTextClass: string;
 
-  constructor (translationsManager: ManageTranslationsService, translator: MorseCodeTranslatorService) {
+  constructor (translationsManager: ManageTranslationsService,
+               translator: MorseCodeTranslatorService,
+               textTranslator: TextToMorseTranslatorService) {
     this.morseCode = '';
-    this.currTranslation = ' ';
+    this.currTranslation = '';
     this.error = '';
     this.translations = translationsManager.getTranslations();
     this.translationsManager = translationsManager;
     this.translator = translator;
-    this.morseToText = true;
+    this.textTranslator = textTranslator;
+    this.morseToText = false;
 
-    this.morseToTextLabel = 'M O R S E -> T E X T';
-    this.textToMorseLabel = 'T E X T -> M O R S E';
+    this.maxInputChars = this.morseToText ? 50 : 20;
+
+    this.morseToTextLabel = 'M O R S E           to  T E X T';
+    this.textToMorseLabel = 'T E X T  to  M O R S E';
 
     this.inputMorseClass = 'input-morse';
     this.inputTextClass = 'input-text';
@@ -50,7 +59,12 @@ export class AppComponent {
 
   translateMorse(morseCode: string) {
     this.morseCode = morseCode;
-    this.currTranslation = this.translator.translateMorse(morseCode);
+    this.currTranslation = this.morseToText ? this.translator.translateMorse(morseCode) : this.textTranslator.translateText(morseCode);
+  }
+
+  clearInput() {
+    this.morseCode = '';
+    this.currTranslation = '';
   }
 
   saveTranslation() {
@@ -83,9 +97,12 @@ export class AppComponent {
   }
 
   changeTranslationMode() {
+    this.morseCode = '';
+    this.currTranslation = '';
     this.morseToText = !this.morseToText;
     this.modeLabel = this.morseToText ? this.morseToTextLabel : this.textToMorseLabel;
     this.inputClass = this.morseToText ? this.inputMorseClass : this.inputTextClass;
+    this.maxInputChars = this.morseToText ? 50 : 25;
   }
 
 }
